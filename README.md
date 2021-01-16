@@ -8,4 +8,7 @@ or
 npm install  
   
 Then to verify that it works, run:    
-npm run start
+npm run start  
+  
+To run the automated tests, type:  
+npm run test  
