@@ -1,24 +1,19 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Customers = void 0;
-var Customers = /** @class */ (function () {
-    function Customers(customers) {
+import {
+    Customer
+} from '../Entities/Customer';
+
+export class Customers {
+    constructor(customers) {
         this._customers = customers;
     }
-    Object.defineProperty(Customers.prototype, "customers", {
-        get: function () {
-            return this._customers;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Customers.prototype.getCustomerById = function (id) {
-        for (var _i = 0, _a = this._customers; _i < _a.length; _i++) {
-            var customer = _a[_i];
+
+    get customers() {
+        return this._customers;
+    }
+
+    getCustomerById(id) {
+        for (let customer of this.customers)
             if (customer.id === id)
                 return customer;
-        }
-    };
-    return Customers;
-}());
-exports.Customers = Customers;
+    }
+}

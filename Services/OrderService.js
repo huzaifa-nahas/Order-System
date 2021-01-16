@@ -1,45 +1,40 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderService = void 0;
-// import {OrderLine} from '../Entities/OrderLine';
-var ItemType_1 = require("../Entities/ItemType");
-var BookOrVideo_1 = require("../Entities/BookOrVideo");
-var OrderService = /** @class */ (function () {
-    function OrderService(customers) {
+import {
+    Order
+} from '../Entities/Order';
+import {
+    Customers
+} from './Customers';
+
+export class OrderService {
+    constructor(customers) {
         this._customers = customers;
     }
-    Object.defineProperty(OrderService.prototype, "customers", {
-        get: function () {
-            return this._customers;
-        },
-        set: function (customers) {
-            this._customers = customers;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    OrderService.prototype.Process = function (order) {
+
+    get customers() {
+        return this._customers
+    }
+
+    set customers(customers) {
+        this._customers = customers;
+    }
+
+    Process(order) {
         // Implement OR1
-        for (var _i = 0, _a = order.items; _i < _a.length; _i++) {
-            var item = _a[_i];
-            if (item.product.pType === ItemType_1.ItemType.subscription) {
-                var customer = this.customers.getCustomerById(order.custId);
-                if (item.product.bookOrVideo === BookOrVideo_1.BookOrVideo.book)
+        for (let item of order.items) {
+            if (item.product.pType === "subscription") {
+                let customer = this.customers.getCustomerById(order.custId);
+                if (item.product.bookOrVideo === "book")
                     customer.activatedBookSubscription = true;
-                else if (item.product.bookOrVideo === BookOrVideo_1.BookOrVideo.video) {
+                else if (item.product.bookOrVideo === "video")
                     customer.activatedVideoSubscription = true;
-                }
             }
         }
+
         // Implement OR2
-        for (var _b = 0, _c = order.items; _b < _c.length; _b++) {
-            var item = _c[_b];
-            if (item.product.pType === ItemType_1.ItemType.oneTime) {
+        for (let item of order.items)
+            if (item.product.pType === "oneTime") {
                 order.generateShippingSlip();
                 break;
             }
-        }
-    };
-    return OrderService;
-}());
-exports.OrderService = OrderService;
+    }
+}

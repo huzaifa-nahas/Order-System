@@ -1,34 +1,56 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var Customer_1 = require("../Entities/Customer");
-var Customers_1 = require("../Services/Customers");
-var OrderService_1 = require("../Services/OrderService");
-var Product_1 = require("../Entities/Product");
-var OrderLine_1 = require("../Entities/OrderLine");
-var Order_1 = require("../Entities/Order");
-var ItemType_1 = require("../Entities/ItemType");
-var BookOrVideo_1 = require("../Entities/BookOrVideo");
-var vidoSubscription = new Product_1.Product(1, ItemType_1.ItemType.subscription, BookOrVideo_1.BookOrVideo.video, 15.60, "video subscription");
-var harryBook = new Product_1.Product(2, ItemType_1.ItemType.oneTime, BookOrVideo_1.BookOrVideo.book, 8.50, "Harry Potter and the Goblet of Fire");
-var videoMission = new Product_1.Product(3, ItemType_1.ItemType.oneTime, BookOrVideo_1.BookOrVideo.video, 4.50, "Mission Impossible");
-var customer1 = new Customer_1.Customer(1, "Tom", "tom@gmail.com");
-var customer2 = new Customer_1.Customer(2, "John", "john@yahoo.com");
-var customers = new Customers_1.Customers([customer1, customer2]);
-var orderLine1 = new OrderLine_1.OrderLine(1);
+import {
+    Customer
+} from '../Entities/Customer';
+import {
+    Customers
+} from '../Services/Customers';
+import {
+    OrderService
+} from '../Services/OrderService';
+import {
+    Product
+} from '../Entities/Product';
+import {
+    OrderLine
+} from '../Entities/OrderLine';
+import {
+    Order
+} from '../Entities/Order';
+
+let vidoSubscription = new Product(1, "subscription", "video", 15.60, "video subscription");
+let harryBook = new Product(2, "oneTime", "book", 8.50, "Harry Potter and the Goblet of Fire");
+let videoMission = new Product(3, "oneTime", "video", 4.50, "Mission Impossible");
+
+let customer1 = new Customer(1, "Tom", "tom@gmail.com");
+let customer2 = new Customer(2, "John", "john@yahoo.com");
+
+let customers = new Customers([customer1, customer2]);
+
+let orderLine1 = new OrderLine(1);
 orderLine1.product = vidoSubscription;
-var orderLine2 = new OrderLine_1.OrderLine(2);
+
+let orderLine2 = new OrderLine(2);
 orderLine2.product = harryBook;
 orderLine2.quantity = 3;
-var orderLine3 = new OrderLine_1.OrderLine(3);
+
+let orderLine3 = new OrderLine(3);
 orderLine3.product = videoMission;
 orderLine3.quantity = 2;
-var orderService = new OrderService_1.OrderService(customers);
-var items = [orderLine1, orderLine2, orderLine3];
-var order = new Order_1.Order(1);
+
+let orderService = new OrderService(customers);
+
+let items = [orderLine1, orderLine2, orderLine3]
+
+let order = new Order(1);
 order.custId = 2;
 order.items = items;
-console.log("Activated subscription of " + customers.getCustomerById(2).firstName + " is " + customers.getCustomerById(2).activatedVideoSubscription);
+
+console.log(`Activated subscription of ${customers.getCustomerById(2).firstName} is ${customers.getCustomerById(2).activatedVideoSubscription}`);
+
 orderService.Process(order);
+
 console.log("After Order Processing");
-console.log("Activated subscription of " + customers.getCustomerById(2).firstName + " is " + customers.getCustomerById(2).activatedVideoSubscription);
-console.log("Generated slip for shipping of the order is \n " + order.shippingSlip + " ");
+
+console.log(`Activated subscription of ${customers.getCustomerById(2).firstName} is ${customers.getCustomerById(2).activatedVideoSubscription}`);
+
+console.log(`Generated slip for shipping of the order is \n ${order.shippingSlip} `);

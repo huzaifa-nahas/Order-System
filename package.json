@@ -1,0 +1,28 @@
+{
+  "name": "order-system",
+  "version": "1.0.0",
+  "description": "Order System Javascript App",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node ./Verify/verify.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huzaifa-nahas/Order-System.git"
+  },
+  "author": "Huzaifa Al Nahas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/huzaifa-nahas/Order-System/issues"
+  },
+  "homepage": "https://github.com/huzaifa-nahas/Order-System#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "nodemon": "^2.0.7",
+    "@babel/node": "^7.12.10"
+  },
+  "dependencies": {}
+}
