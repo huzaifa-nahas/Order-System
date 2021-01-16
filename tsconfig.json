@@ -1,0 +1,9 @@
+{
+    "compilerOptions":
+    {
+        "target": "es5"
+    },
+    "include": [
+        "./Entities/*.ts", "./Services/*.ts", "./Verify/*.ts"
+    ]
+}
